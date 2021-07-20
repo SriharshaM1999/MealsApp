@@ -78,10 +78,17 @@ let displayResults = document.getElementById('display-results');
       const resultName = document.createTextNode(`${answer.strMeal}`)
       const ButtonName = document.createTextNode(`Add to Favourites`)
 
+      const moreInfo = document.createElement('a');
+      moreInfo.setAttribute('href','./AboutItem.html');
+      moreInfo.appendChild(resultName)
+      moreInfo.setAttribute("id", `${answer.strMeal}-${answer.idMeal}`)
+      
+      // added eventListener;
+      moreInfo.setAttribute("onclick",`addToDisplay(this.id)`);
 
      
 
-      result.appendChild(resultName);
+      result.appendChild(moreInfo);
 
       //  code checking whether the current element is already
       // present in local storage
@@ -119,7 +126,7 @@ let displayResults = document.getElementById('display-results');
 
 // added EventListener to input tag
 searchText.onkeydown = fetchRelated;
-
+moreInfo.appendChild(searchText);
 
 
 
@@ -149,14 +156,24 @@ function addToFavourites(id){
 
   console.log(keys,values);
 
-
 }
+
 
 function checkKeyInLocalStorage(key){
    let keys = Object.keys(localStorage);
     
-   console.log("keep smiling sahara",keys.includes(key))
+  // console.log("keep smiling sahara",keys.includes(key))
    return keys.includes(key)==false;
+}
+
+
+
+function addToDisplay(id){
+
+   let itemId  = id.split('-')[1];
+
+   localStorage.setItem('about',itemId);
+
 }
 
 

@@ -25,6 +25,7 @@ function callMe(){
 
     for(let i=0;i<keysLength;i++){
 
+            
             values.push(localStorage.getItem(keys[i]));
 
 
@@ -41,15 +42,24 @@ function callMe(){
         const Favourites= document.createElement('div');
   
         const FavouritesButton = document.createElement('button')
+        const moreInfo = document.createElement('a');
+        moreInfo.setAttribute('href','./AboutItem.html');
+
+        
+        // added eventListener;
+        moreInfo.setAttribute("onclick",`addToDisplay(this.id)`);
   
         const resultName = document.createTextNode(`${values[i]}`)
         const ButtonName = document.createTextNode(`Remove to Favourites`)
+
+        moreInfo.appendChild(resultName)
+        moreInfo.setAttribute("id", `${values[i]}-${keys[i]}`)
 
         FavouritesButton.appendChild(ButtonName);
         Favourites.appendChild(FavouritesButton);
         FavouritesButton.setAttribute("id", `${keys[i]}-${values[i]}`)
         FavouritesButton.setAttribute('onclick',`removeFromFavourites(this.id)`);
-        result.appendChild(resultName);
+        result.appendChild(moreInfo);
         
         element.appendChild(result);
         element.appendChild(Favourites);
@@ -75,17 +85,14 @@ function callMe(){
 }
 
 
+function addToDisplay(id){
 
-
-
-
-
-
-
-
-
-
-
+    let itemId  = id.split('-')[1];
+ 
+    localStorage.setItem('about',itemId);
+ 
+ }
+ 
 
 
 
