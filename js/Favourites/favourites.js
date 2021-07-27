@@ -15,6 +15,10 @@ function clearData(){
 function onLoad(){
 
     clearData();
+
+
+
+    // first step is to fetch all the keys and values present inside the localstorage;
     
     let keys = Object.keys(localStorage);
     let keysLength = keys.length;
@@ -34,6 +38,8 @@ function onLoad(){
 
     console.log(keys, values);
 
+
+// after fetching the key and values its time for creating the html elements from the data and rendering elements to the page; 
     for(let i=0;i<values.length;i++){
 
         const element = document.createElement('div');
@@ -74,6 +80,8 @@ function onLoad(){
 
   function removeFromFavourites(id){
 
+// code for removing elements from the localstorage;
+
         let itemId = id.split('-')[0];
 
          localStorage.removeItem(itemId);
@@ -87,6 +95,9 @@ function onLoad(){
 
 function addToDisplay(id){
 
+    // code used to set the value of about attribute inside the localstorage . Here in the about page the value of about
+    // key in local storage is fetched and then fetch request will be made;
+
     let itemId  = id.split('-')[1];
  
     localStorage.setItem('about',itemId);
@@ -95,6 +106,6 @@ function addToDisplay(id){
  
 
 
-
+// adding event Listener to the window;
 window.addEventListener("load",onLoad);
 

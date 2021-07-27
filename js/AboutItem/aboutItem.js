@@ -7,14 +7,19 @@ let mainRightBottom = document.getElementById('main-right-bottom');
 
 async function display(){
 
+  // fetches the data about the item based on item id and display the necessary info
+
   console.log("display")
 
+   // getting the value of key about present in the local storage
   let idToBeDisplayed = Number(localStorage.getItem('about'));
 
   console.log(idToBeDisplayed);
-
+  
   console.log(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idToBeDisplayed}`)
 
+
+  // making the request to get info based on the id;
   let dataReceived = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idToBeDisplayed}`)
 
   dataReceived = await dataReceived.json();
@@ -28,6 +33,8 @@ async function display(){
 
 function addElements(meal){
 
+    // the mainfunctionality is to create the html elements from json data and to render the elements on the page;
+
     console.log(meal);
 
     let image = document.createElement('img');
@@ -36,9 +43,7 @@ function addElements(meal){
     let youtube = document.createElement('a')
 
     image.setAttribute('src',`${meal.strMealThumb}`)
-    // image.setAttribute('width','80%');
-    // image.setAttribute('height','80%');
-    // image.style.padding
+
 
     mainLeft.appendChild(image);
 
@@ -57,13 +62,13 @@ function addElements(meal){
 
     mainRightBottom.appendChild(youtube)
 
-
+// final removing the about key from the localstorage;
     localStorage.removeItem('about');
 
 }
 
 
-
+// added event Listener;
 window.addEventListener("load",display);
 
 
