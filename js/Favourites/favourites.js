@@ -12,7 +12,7 @@ function clearData(){
 
  }
 
-function callMe(){
+function onLoad(){
 
     clearData();
     
@@ -79,7 +79,7 @@ function callMe(){
          localStorage.removeItem(itemId);
     
 
-        callMe();
+        onLoad();
 
 
 }
@@ -96,5 +96,5 @@ function addToDisplay(id){
 
 
 
-window.addEventListener("load",callMe);
+window.addEventListener("load",onLoad);
 
