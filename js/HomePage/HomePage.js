@@ -1,3 +1,6 @@
+
+let timeoutId;
+
 console.log("I got called")
 
 // Inorder to get the value of the input tag
@@ -7,7 +10,7 @@ let displayResults = document.getElementById('display-results');
 
    function clearData(){
 
-      // the main function is to clear the  result of previous search;
+      // the main function of clearData is to clear the  result of previous search;
 
       while ( displayResults.firstChild ){ 
          displayResults.removeChild( displayResults.firstChild );
@@ -69,7 +72,6 @@ let displayResults = document.getElementById('display-results');
 
 
       const element = document.createElement('div');
-
       const result = document.createElement('div');
       const Favourites= document.createElement('div');
 
@@ -125,8 +127,18 @@ let displayResults = document.getElementById('display-results');
 
 
 // added EventListener to input tag
-searchText.onkeydown = fetchRelated;
+searchText.onkeydown = debounce;
 moreInfo.appendChild(searchText);
+
+
+// debouncing concept is used here;
+
+function debounce(){
+
+   clearInterval(timeoutId);
+   timeoutId =setTimeout(fetchRelated,1000)
+
+}
 
 
 
